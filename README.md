@@ -1,37 +1,49 @@
 <div align="center">
 
-# ✨ Fluxlead
+<img src="docs/screenshots/logo-banner.png" alt="Fluxlead" width="72" />
+
+# Fluxlead
+
 ### AI-Powered CSV → CRM Lead Importer
 
 **Any CSV. Any layout. One clean import — powered by AI.**
 
 Built for the **GrowEasy Software Developer (Full-Time)** assignment.
 
-🔗 **Live App:** [https://your-frontend.netlify.app](https://your-frontend.netlify.app) &nbsp;·&nbsp; **Live API:** [https://your-backend.onrender.com](https://your-backend.onrender.com)
-&nbsp;·&nbsp; **Repository:** [GitHub link here]
+<br />
 
-`Next.js` `TypeScript` `Express.js` `PostgreSQL` `Prisma` `OpenAI / Gemini / Claude` `Tailwind CSS`
+[![Live App](https://img.shields.io/badge/Live_App-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://your-frontend.netlify.app)
+[![Live API](https://img.shields.io/badge/Live_API-4A4A4A?style=for-the-badge&logo=render&logoColor=white)](https://your-backend.onrender.com)
+[![GitHub](https://img.shields.io/badge/Source-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/your-username/fluxlead-csv-importer)
+
+<br />
+
+![Next.js](https://img.shields.io/badge/Next.js_14-black?style=flat-square&logo=next.js)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
+![Express](https://img.shields.io/badge/Express.js-000000?style=flat-square&logo=express)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white)
+![Gemini](https://img.shields.io/badge/Gemini_/_OpenAI_/_Claude-8E75B2?style=flat-square&logo=googlegemini&logoColor=white)
+![Tailwind](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
 
 </div>
 
+<br />
+
 ---
 
-## 1. What is Fluxlead?
+## What is Fluxlead?
 
 Fluxlead is a full-stack SaaS application that lets a user **upload any CSV file** — no
 matter what the column names are, what order they're in, or where it came from — and
 have it **automatically mapped into a standard CRM lead format** using AI.
 
-The user simply drags a file in, previews the rows, hits confirm, and gets back a clean,
-structured list of leads, ready to be imported into GrowEasy CRM — with a clear summary
-of what was imported and what had to be skipped, and why.
+The user drags a file in, previews the rows, hits confirm, and gets back a clean,
+structured list of leads ready for GrowEasy CRM — with a clear summary of what was
+imported, what was skipped, and why. No manual column-matching screen. No "map column A
+to field B" dropdowns. The AI figures it out.
 
-That's it. No manual column-matching screen. No "map column A to field B" dropdowns. The
-AI figures it out.
-
----
-
-## 2. Why does this project exist? (The problem)
+## Why does this project exist?
 
 Every lead source formats its export differently:
 
@@ -42,282 +54,294 @@ Every lead source formats its export differently:
 | Real-estate CRMs | `Lead`, `Contact`, `Assigned Agent`, `Possession` |
 | Manually built spreadsheets | Whatever the person typing it felt like calling the column |
 
-A traditional importer solves this by hardcoding column names (`row["Email"]`) — which
-breaks the moment a new source sends a slightly different header. The **real** problem
-isn't parsing a CSV file; it's **understanding messy, inconsistent, human-generated data**
-and reliably turning it into something structured, without a developer having to write a
-new mapping rule every time a new source shows up.
+A traditional importer hardcodes column names (`row["Email"]`) — which breaks the moment
+a new source sends a slightly different header. The real problem isn't parsing a CSV; it's
+**understanding messy, inconsistent, human-generated data** and reliably turning it into
+something structured, without a developer writing a new mapping rule every time a new
+source shows up.
 
-That's exactly the gap this project closes: it replaces brittle, hardcoded column mapping
-with an **AI reasoning layer** that reads the data the way a human would, and maps it into
-a fixed CRM schema — accurately, consistently, and at scale.
+Fluxlead replaces brittle, hardcoded column mapping with an **AI reasoning layer** that
+reads the data the way a human would, and maps it into a fixed CRM schema — accurately,
+consistently, and at scale.
 
-### Real-life use case
+## Real-life use case
 
-This isn't a toy problem — it's a pattern used across almost every serious B2B SaaS
-product that deals with bulk data onboarding:
+This pattern shows up across nearly every serious B2B SaaS product that deals with bulk
+data onboarding:
 
-- **CRMs** (Salesforce, HubSpot, GrowEasy) — customers importing existing lead/contact lists
+- **CRMs** (Salesforce, HubSpot, GrowEasy) — customers importing existing lead lists
 - **Recruitment platforms** — importing candidate data from different job boards
 - **E-commerce back-offices** — merging product catalogs from different suppliers
-- **HR / Payroll systems** — migrating employee records between systems
-- **Fintech / banking tools** — reconciling statements that arrive in different bank formats
+- **HR / payroll systems** — migrating employee records between systems
+- **Fintech tools** — reconciling statements that arrive in different bank formats
 
 Anywhere a product says *"upload your data and we'll take it from there"* without forcing
 the user to manually map every column — this is the underlying pattern that makes it work.
 
----
-
-## 3. Features
-
-### Core (as per assignment spec)
-- 📤 Upload a CSV in **any column layout** — drag & drop or file picker
-- 👀 **Live preview** of parsed rows in a responsive, scrollable table with sticky
-  headers — before any AI processing happens
-- ✅ Explicit **Confirm** step — AI is only called once the user approves the data
-- 🤖 **AI-powered field extraction**, processed in batches, mapping messy input into a
-  fixed 14-field GrowEasy CRM schema
-- 📊 Final results screen showing **imported vs. skipped** records, with reasons for
-  every skip, plus totals
-
-### Engineering / production-quality additions
-- 🔁 **Retry with exponential backoff** for failed AI batches — one bad batch never
-  fails the whole import
-- 🧩 **Provider-agnostic AI layer** — switch between OpenAI, Gemini, or Claude with a
-  single environment variable, no code changes
-- 🛡️ **Strict server-side validation** of every AI response — enums, dates, and
-  formatting rules are re-checked in code, the AI's output is never blindly trusted
-- 🗄️ **Optional PostgreSQL persistence** (Neon) — import history is saved if a database
-  is connected, but the app runs perfectly well stateless if it isn't
-- 🌗 Dark / light theme toggle
-- 📱 Fully responsive — mobile, tablet, and desktop
-- 🧭 Real routed pages (`/`, `/preview`, `/processing`, `/results`) — not a single-page state machine; each step has its own URL and survives a refresh
-- 📄 Client-side pagination + search on every data table — the DOM only ever renders one page of rows, so a 25-row import and a 10,000-row import feel identical
-- 🧪 Unit tests for the core CRM validation logic
-- 🐳 Dockerized backend + `docker-compose` for one-command local development
-- ⚙️ Ready-to-deploy configs for **Render** (backend) and **Netlify** (frontend)
+<br />
 
 ---
 
-## 4. Why this qualifies as a production-level SaaS application
+## Product tour
+
+<table>
+<tr>
+<td width="50%">
+<img src="docs/screenshots/01-upload.png" alt="Upload screen — drag and drop CSV" />
+<p align="center"><sub><b>1 · Upload</b> — drag & drop or browse, instant client-side validation</sub></p>
+</td>
+<td width="50%">
+<img src="docs/screenshots/02-preview.png" alt="Preview screen — parsed data table" />
+<p align="center"><sub><b>2 · Preview</b> — sticky-header table, column browser, zero AI calls yet</sub></p>
+</td>
+</tr>
+<tr>
+<td width="50%">
+<img src="docs/screenshots/03-processing.png" alt="AI processing screen with progress" />
+<p align="center"><sub><b>3 · AI mapping</b> — batched extraction with live progress and retries</sub></p>
+</td>
+<td width="50%">
+<img src="docs/screenshots/04-results.png" alt="Results screen — imported vs skipped leads" />
+<p align="center"><sub><b>4 · Results</b> — imported / skipped side-by-side, with reasons</sub></p>
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<img src="docs/screenshots/05-mobile-dark.png" alt="Mobile responsive dark mode view" />
+<p align="center"><sub><b>5 · Responsive</b> — the full flow on mobile, dark and light mode</sub></p>
+</td>
+</tr>
+</table>
+
+> **Note for reviewers:** screenshots live in [`docs/screenshots/`](docs/screenshots).
+> Replace the placeholder files there with your own captures from the live app —
+> GitHub renders them automatically once added, no README changes needed.
+
+<br />
+
+---
+
+## Why this qualifies as a production-level SaaS application
 
 A student project stops at "it works on my machine with a perfect file." Fluxlead is
 built around the assumption that **real files are messy and AI calls fail** — so the
-system is designed to degrade gracefully instead of breaking:
+system degrades gracefully instead of breaking:
 
 - **Fault isolation** — if one batch of 20 rows fails after all retries, only those rows
-  are marked as skipped; the other 480 rows in a 500-row file still import successfully.
+  are marked skipped; the other 480 rows in a 500-row file still import successfully.
+- **Fail-fast on systemic errors** — if the very first batch fails with an auth/quota
+  error (bad API key, no credits), the remaining batches are skipped instantly instead
+  of retrying a dead connection 24 more times.
 - **Defense against AI unpredictability** — the AI is a mapping assistant, not a source
   of truth. Every field it returns is re-validated in code (status/source enums, date
   parsing, single-line formatting) before it's accepted.
 - **Cost-aware architecture** — AI is only invoked after explicit user confirmation, and
   rows are batched to control both cost and response size.
-- **Stateless-by-default, stateful-when-available** — the app never *requires* a
-  database to function, but transparently upgrades to persist history when one is
-  connected. This is the same graceful-degradation pattern real SaaS products use.
+- **Stateless-by-default, stateful-when-available** — the app never *requires* a database
+  to function, but transparently upgrades to persist history when one is connected.
 - **Operational readiness** — health check endpoint, structured JSON logs, rate limiting,
-  centralized error handling, and environment-based configuration — the basics every
-  production backend needs before it can be trusted with real traffic.
+  centralized error handling, environment-based configuration.
 
-This is the difference between "a script that maps a CSV" and "a system you could hand
-to a real user tomorrow."
+This is the difference between "a script that maps a CSV" and "a system you could hand to
+a real user tomorrow."
+
+<br />
 
 ---
 
-## 5. Tech stack
+## Features
+
+**Core (per assignment spec)**
+- Upload a CSV in any column layout — drag & drop or file picker
+- Live preview of parsed rows in a responsive, sticky-header table — before any AI runs
+- Explicit Confirm step — AI is only called once the user approves the data
+- AI-powered field extraction, processed in batches, into a fixed 14-field CRM schema
+- Results screen showing imported vs. skipped records, with reasons, plus totals
+
+**Engineering**
+- Retry with exponential backoff for failed AI batches
+- Fail-fast detection for systemic AI-connection failures
+- Provider-agnostic AI layer — OpenAI, Gemini, or Claude via one env variable
+- Strict server-side validation of every AI response (enums, dates, formatting)
+- Optional PostgreSQL persistence (Neon) — stateless if not connected
+- Dark / light theme toggle
+- Fully responsive — mobile, tablet, desktop
+- Real routed pages (`/`, `/preview`, `/processing`, `/results`) — each step has its own
+  URL and survives a refresh
+- Client-side pagination + search on every table — a 10-row and a 10,000-row import
+  render identically fast
+- Unit tests for core CRM validation logic
+- Dockerized backend + `docker-compose` for one-command local development
+- Deploy-ready configs for Render (backend) and Netlify (frontend)
+
+<br />
+
+---
+
+## Tech stack
 
 | Layer | Technology | Why |
 |---|---|---|
-| Frontend | Next.js 14 (App Router, static export) + TypeScript | Modern, fast, and exports to static hosting (Netlify) cleanly |
-| Styling | Tailwind CSS | Fast, consistent design system |
+| Frontend | Next.js 14 (App Router, static export) + TypeScript | Fast, modern, exports cleanly to static hosting |
+| Styling | Tailwind CSS | Consistent design system, fast iteration |
 | Animation | Framer Motion | Smooth step transitions and loading states |
-| Backend | Node.js + Express + TypeScript | Matches the assignment's required stack; type safety end-to-end |
-| CSV parsing | `csv-parse` | Handles quoted commas, inconsistent rows, and edge cases a hand-rolled parser would miss |
-| AI | OpenAI (default), with Gemini and Claude support | Assignment allowed any LLM provider; built provider-agnostic so it's not locked in |
-| Database | PostgreSQL via Prisma, hosted on Neon | Optional, as permitted by the brief; adds import history when connected |
-| File handling | Multer (in-memory, no disk writes) | Keeps the API stateless and fast |
-| Hosting | Backend → Render · Frontend → Netlify · Database → Neon | All free-tier friendly, production-realistic split |
+| Backend | Node.js + Express + TypeScript | Matches the assignment's stack; type safety end-to-end |
+| CSV parsing | `csv-parse` | Handles quoted commas, inconsistent rows, edge cases |
+| AI | OpenAI / Gemini / Claude | Provider-agnostic — swap with one env variable |
+| Database | PostgreSQL via Prisma, hosted on Neon | Optional; adds import history when connected |
+| File handling | Multer (in-memory) | Keeps the API stateless and fast |
+| Hosting | Render (API) · Netlify (web) · Neon (DB) | Free-tier friendly, production-realistic split |
+
+<br />
 
 ---
 
-## 6. How the application works (step by step)
+## How it works
 
 ```
  1. UPLOAD          User drags/drops or selects a .csv file (client validates type & size)
         │
         ▼
  2. PREVIEW         POST /api/csv/preview → backend parses CSV (any headers, any order)
-        │           → returns full row data + column list
         │           → NO AI processing happens at this step, per the spec
         ▼
- 3. CONFIRM         User reviews the preview table, clicks "Confirm & Run AI Import" —
-        │           only now does the frontend call the backend
+ 3. CONFIRM         User reviews the preview table, clicks "Confirm & Run AI Import"
+        │
         ▼
- 4. AI EXTRACTION   POST /api/csv/import → rows are split into batches (default: 20/batch)
+ 4. AI EXTRACTION   POST /api/csv/import → rows split into batches (default 20/batch)
         │           → each batch sent to the configured LLM with a strict schema-mapping
-        │             prompt — the AI intelligently maps fields, no manual mapping step
-        │           → failed batches retried with exponential backoff (up to 3 attempts)
-        │           → every AI response is validated & normalized in code
-        │           → rows missing both email and mobile, or duplicate emails, are skipped
-        │             with a specific reason
+        │             prompt — the AI maps fields automatically, no manual step
+        │           → failed batches retried with exponential backoff
+        │           → every AI response validated & normalized in code
+        │           → rows missing both email and mobile are skipped, with a reason
         ▼
- 5. RESULTS         Structured JSON returned: imported records, skipped records + reasons,
-                    totals, batch count, and processing time — rendered as two side-by-side
-                    panels (Imported / Skipped) with independent search, pagination, a
-                    "Top Skip Reasons" breakdown, and CSV export
-                    → optionally persisted to Postgres for import history
+ 5. RESULTS         Imported records, skipped records + reasons, totals, batch count,
+                    processing time — rendered as searchable, paginated panels
 ```
+
+<br />
 
 ---
 
-## 7. Project structure
+## Project structure
 
 ```
 growease-csv-importer/
-│
-├── backend/                        Express API
+├── backend/                Express API
 │   ├── src/
-│   │   ├── index.ts                 App entrypoint — middleware, routes, server start
-│   │   ├── routes/
-│   │   │   ├── upload.route.ts       POST /api/csv/preview  (parse only, no AI — per spec)
-│   │   │   ├── import.route.ts       POST /api/csv/import   (batch AI extraction + validation)
-│   │   │   └── history.route.ts      GET  /api/history      (past import batches)
-│   │   ├── services/
-│   │   │   ├── csv.service.ts        Raw CSV → row objects, dynamic headers
-│   │   │   ├── ai.service.ts         Provider-agnostic AI calls, batching, retries
-│   │   │   └── crm.service.ts        Validates/normalizes AI output into the CRM schema
-│   │   ├── middleware/
-│   │   │   ├── upload.middleware.ts   Multer config — CSV-only, size limit
-│   │   │   └── error.middleware.ts    Centralized error handling
-│   │   ├── db/prisma.ts              Optional Prisma client (only initializes if DB is configured)
-│   │   ├── types/index.ts            Shared TypeScript types & CRM enums
-│   │   └── utils/logger.ts           Structured JSON logging
-│   ├── prisma/schema.prisma          Database schema (ImportBatch, Lead, SkippedRow)
-│   ├── tests/                        Unit tests for CRM validation logic
+│   │   ├── routes/          upload.route.ts · import.route.ts · history.route.ts
+│   │   ├── services/        csv.service.ts · ai.service.ts · crm.service.ts
+│   │   ├── middleware/       upload.middleware.ts · error.middleware.ts
+│   │   ├── db/prisma.ts      Optional Prisma client
+│   │   └── types/            Shared TypeScript types & CRM enums
+│   ├── prisma/schema.prisma
+│   ├── tests/
 │   ├── Dockerfile
-│   └── render.yaml                   Render deployment blueprint
+│   └── render.yaml
 │
-├── frontend/                        Next.js app — real routed pages, matching the 4 spec steps
+├── frontend/                Next.js — real routed pages, matching the 4 spec steps
 │   └── app/
-│       ├── page.tsx                  "/" — Step 1: Upload
-│       ├── preview/page.tsx          "/preview" — Step 2: Preview (no AI yet) + Confirm button
-│       ├── processing/page.tsx       "/processing" — Step 3→4: triggers the real batch AI call
-│       ├── results/page.tsx          "/results" — Step 4: imported/skipped panels + totals
-│       ├── layout.tsx                Fonts, metadata, wraps every route in AppChrome
-│       ├── globals.css               Design tokens, glassmorphism, theme variables
-│       ├── components/
-│       │   ├── AppChrome.tsx          Persistent header + step rail shared by all routes
-│       │   ├── WorkspaceHeader.tsx    Page title/subtitle/"Start over" used on results
-│       │   ├── UploadZone.tsx         Drag & drop + file picker
-│       │   ├── ColumnChips.tsx        Searchable column-name chip browser (Preview screen)
-│       │   ├── SegmentedDonut.tsx     Multi-segment SVG donut (Top Skip Reasons)
-│       │   ├── PreviewTable.tsx       Sticky-header, paginated data table (mobile: card list)
-│       │   ├── ImportedPanel.tsx      Imported-leads panel — search, pagination, CSV export
-│       │   ├── SkippedPanel.tsx       Skipped-leads panel — reasons breakdown, search, CSV export
-│       │   ├── PaginationBar.tsx      Page controls — keeps the DOM light at any row count
-│       │   ├── FlowRail.tsx           Animated step-progress indicator, driven by the current route
-│       │   ├── StatCard.tsx           Dashboard-style metric cards
-│       │   └── ThemeToggle.tsx        Dark/light mode switch
-│       └── lib/
-│           ├── api.ts                 Typed fetch client for the backend
-│           ├── storage.ts             sessionStorage bridge — carries data between routes
-│           ├── usePagination.ts       Reusable pagination hook
-│           └── types.ts               Shared frontend types
+│       ├── page.tsx           "/" — Upload
+│       ├── preview/           "/preview" — Preview + Confirm
+│       ├── processing/        "/processing" — Batch AI call
+│       ├── results/           "/results" — Imported / skipped panels
+│       ├── components/        UploadZone, PreviewTable, ImportedPanel, SkippedPanel, …
+│       └── lib/                api.ts · storage.ts · usePagination.ts · types.ts
 │
-├── samples/                         Example CSVs (Facebook, Google Ads, manual sheet) for testing
-├── docker-compose.yml               One-command local stack (backend + Postgres)
+├── docs/screenshots/        Product tour images (see above)
+├── samples/                 Example CSVs for testing
+├── docker-compose.yml
 └── README.md
 ```
 
-**Why this structure:** each layer has one job. Routes only handle HTTP concerns (parse
-the request, call a service, return a response). Services hold all business logic (CSV
-parsing, AI calls, validation) and have zero knowledge of Express. This means the AI
-extraction logic or the validation rules can be unit-tested completely in isolation, and
-swapping the AI provider or the database never touches the route layer.
+Each layer has one job. Routes handle HTTP concerns only; services hold all business
+logic (CSV parsing, AI calls, validation) with zero knowledge of Express — so extraction
+logic and validation rules are unit-testable in isolation, and swapping the AI provider or
+database never touches the route layer.
 
-**On scope:** this project intentionally implements exactly the 4 steps in the brief —
-Upload → Preview (no AI) → Confirm → AI-extracted Results — with no manual mapping screen
-in between. The AI does all field mapping automatically in the batch extraction step, per
-"3. AI Extraction" in the assignment.
+<br />
 
 ---
 
-## 8. Running it yourself
+## Running it yourself
 
-### Backend
+**Backend**
 ```bash
 cd backend
-cp .env.example .env      # add your OPENAI_API_KEY (DATABASE_URL is optional)
+cp .env.example .env      # add your API key (OPENAI_API_KEY / GEMINI_API_KEY / ANTHROPIC_API_KEY)
 npm install
 npm run dev                # http://localhost:4000
 ```
 
-### Frontend
+**Frontend**
 ```bash
 cd frontend
-cp .env.example .env.local # set NEXT_PUBLIC_API_BASE_URL=http://localhost:4000
+cp .env.example .env.local # NEXT_PUBLIC_API_BASE_URL=http://localhost:4000
 npm install
 npm run dev                 # http://localhost:3000
 ```
 
-### Full stack with Docker (backend + Postgres)
+**Full stack with Docker**
 ```bash
 OPENAI_API_KEY=sk-xxxx docker compose up --build
 ```
 
-### Tests
+**Tests**
 ```bash
 cd backend && npm test
 ```
 
-Full deployment steps for **Render**, **Netlify**, and **Neon** are in the sections below.
+<br />
 
 ---
 
-## 9. Deployment
+## Deployment
 
-### Database — Neon (PostgreSQL)
-1. Create a project at [neon.tech](https://neon.tech) and copy the pooled connection string.
-2. Set it as `DATABASE_URL` on the backend. The app works without it — it just won't
-   persist import history.
-3. Run `npx prisma migrate deploy` from `backend/` once `DATABASE_URL` is set.
+**Database — Neon (PostgreSQL)**
+1. Create a project at [neon.tech](https://neon.tech), copy the pooled connection string.
+2. Set it as `DATABASE_URL` on the backend — optional, the app runs stateless without it.
+3. `npx prisma migrate deploy` from `backend/` once `DATABASE_URL` is set.
 
-### Backend — Render
-1. Push this repo to GitHub.
-2. Render → **New → Blueprint**, point it at the repo (uses `backend/render.yaml`).
-3. Set environment variables: `OPENAI_API_KEY`, `CORS_ORIGIN` (your Netlify URL),
-   `DATABASE_URL` (from Neon).
+**Backend — Render**
+1. Push to GitHub. Render → **New → Blueprint**, point at the repo (uses `render.yaml`).
+2. Set `OPENAI_API_KEY` / `GEMINI_API_KEY`, `CORS_ORIGIN` (Netlify URL), `DATABASE_URL`.
 
-### Frontend — Netlify
-1. Netlify → **New site from Git**, point at this repo.
-2. Base directory: `frontend` — build command and publish directory are already set in
-   `netlify.toml`.
-3. Set `NEXT_PUBLIC_API_BASE_URL` to your Render backend URL.
+**Frontend — Netlify**
+1. Netlify → **New site from Git**. Base directory: `frontend` (already set in `netlify.toml`).
+2. Set `NEXT_PUBLIC_API_BASE_URL` to your Render backend URL.
+
+<br />
 
 ---
 
-## 10. API reference
+## API reference
 
 | Method | Path | Body | Description |
 |---|---|---|---|
 | `GET` | `/health` | — | Liveness + config check |
 | `POST` | `/api/csv/preview` | `multipart/form-data` (`file`) | Parses CSV, returns headers + all rows |
-| `POST` | `/api/csv/import` | `{ fileName, fileSizeBytes, rows }` | Runs batch AI extraction, returns structured CRM records |
+| `POST` | `/api/csv/import` | `{ fileName, fileSizeBytes, rows }` | Batch AI extraction, returns structured CRM records |
 | `GET` | `/api/history` | — | Recent import batches (if a database is connected) |
+
+<br />
 
 ---
 
 <div align="center">
 
-## About the developer
+### About the developer
 
 **Built by Harsh** — a full-stack developer focused on shipping products end-to-end,
 from database schema to pixel-level UI polish, with an eye for both clean architecture
 and premium user experience.
 
-This project was built as a submission for the **GrowEasy Software Developer
-(Full-Time)** position, and reflects how I approach real-world engineering problems:
-understand the actual pain point first, then design a system that's honest about its
-failure modes, not just its happy path.
+Built as a submission for the **GrowEasy Software Developer (Full-Time)** position —
+and reflects how I approach engineering problems: understand the actual pain point
+first, then design a system that's honest about its failure modes, not just its happy
+path.
+
+<br />
+
+[![Live App](https://img.shields.io/badge/View_Live_App-000000?style=for-the-badge)](https://your-frontend.netlify.app)
 
 </div>

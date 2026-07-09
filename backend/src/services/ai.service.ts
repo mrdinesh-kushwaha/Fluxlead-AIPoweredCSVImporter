@@ -83,8 +83,14 @@ function extractJsonArray(text: string): unknown[] {
 }
 
 async function callOpenAi(rows: RawCsvRow[]): Promise<unknown[]> {
-  const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
-  const model = process.env.OPENAI_MODEL || "gpt-4o-mini";
+  const isGroq = AI_PROVIDER === "groq";
+  const client = new OpenAI({
+    apiKey: isGroq ? process.env.GROQ_API_KEY : process.env.OPENAI_API_KEY,
+    baseURL: isGroq ? "https://api.groq.com/openai/v1" : undefined,
+  });
+  const model = isGroq
+    ? process.env.GROQ_MODEL || "llama-3.3-70b-versatile"
+    : process.env.OPENAI_MODEL || "gpt-4o-mini";
 
   const response = await client.chat.completions.create({
     model,
@@ -103,12 +109,6 @@ async function callOpenAi(rows: RawCsvRow[]): Promise<unknown[]> {
   return records;
 }
 
-/**
- * Provider APIs return large, deeply nested JSON error bodies (especially
- * Gemini's quota errors). Dumping that raw into the "skipped" reason shown
- * to the end user is unreadable. This extracts one clean, human sentence
- * and categorizes the common cases (quota, auth, missing model).
- */
 class ProviderApiError extends Error {}
 
 function buildProviderErrorMessage(providerLabel: string, status: number, rawBody: string): string {
@@ -153,7 +153,9 @@ async function callGemini(rows: RawCsvRow[]): Promise<unknown[]> {
   if (!res.ok) {
     throw new ProviderApiError(buildProviderErrorMessage("Gemini", res.status, await res.text()));
   }
-  const data = await res.json();
+ const data = (await res.json()) as {
+    candidates?: { content?: { parts?: { text?: string }[] } }[];
+  };
   const text = data.candidates?.[0]?.content?.parts?.[0]?.text ?? "[]";
   return extractJsonArray(text);
 }
@@ -181,7 +183,7 @@ async function callAnthropic(rows: RawCsvRow[]): Promise<unknown[]> {
   if (!res.ok) {
     throw new ProviderApiError(buildProviderErrorMessage("Anthropic", res.status, await res.text()));
   }
-  const data = await res.json();
+  const data = (await res.json()) as { content?: { text?: string }[] };
   const text = data.content?.map((b: { text?: string }) => b.text ?? "").join("") ?? "[]";
   return extractJsonArray(text);
 }
@@ -228,11 +230,6 @@ function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-/**
- * Runs one batch through the configured AI provider with exponential-backoff
- * retries. On total failure, returns null records for every row in the batch
- * so the caller can mark them skipped instead of crashing the whole import.
- */
 async function extractBatchWithRetry(rows: RawCsvRow[]): Promise<BatchExtractionOutcome[]> {
   let lastError = "";
 
