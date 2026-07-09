@@ -64,8 +64,8 @@ the rest" needs to actually work.
 
 <br />
 
-## Stack
-
+## Tech Stack Used
+ 
 | | |
 |---|---|
 | **Frontend** | Next.js 14 · TypeScript · Tailwind · Framer Motion |
@@ -73,43 +73,94 @@ the rest" needs to actually work.
 | **AI** | OpenAI / Gemini / Claude / Groq — swap with one env var |
 | **Database** | PostgreSQL (Prisma + Neon) — optional |
 | **Hosting** | Render (API) · Netlify (web) · Neon (DB) |
-
+ 
 <br />
 
-## How it works
-
+## How it works — 4 steps
+ 
 ```
-Upload → Preview (no AI yet) → Confirm → AI extraction in batches → Imported / Skipped results
+┌─────────────┐     ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
+│   UPLOAD    │ ──▶ │   PREVIEW   │ ──▶ │  AI EXTRACT │ ──▶ │   RESULTS   │
+│             │     │             │     │             │     │             │
+│ Drag & drop │     │ Parse & show│     │ Batched AI  │     │ Imported /  │
+│ or browse   │     │ table — NO  │     │ mapping +   │     │ Skipped +   │
+│ a .csv file │     │ AI call yet │     │ retry logic │     │ reasons     │
+└─────────────┘     └─────────────┘     └─────────────┘     └─────────────┘
+      │                    │                    │                   │
+      ▼                    ▼                    ▼                   ▼
+  Client-side         GET headers +        POST /api/csv/     Structured JSON:
+  file validation     rows returned,       import — only      success[], skipped[],
+  (.csv, ≤5MB)         zero AI cost         fires after         totals, reasons
+                                             user clicks
+                                             "Confirm"
 ```
-
-Rows are batched (default 20/call), sent to the LLM with a strict schema-mapping prompt,
-retried on failure with exponential backoff, and every response is validated in code
-before it's accepted — enums, dates, and formatting rules included.
-
+ 
+**Route → step mapping** (each step is a real URL, not a hidden state):
+ 
+| Route | Step | What happens |
+|---|---|---|
+| `/` | Upload | Client validates file type & size before sending |
+| `/preview` | Preview | `POST /api/csv/preview` — CSV parsed, **no AI called** |
+| `/processing` | AI Extraction | `POST /api/csv/import` — batched, retried, validated |
+| `/results` | Results | Imported / skipped panels, searchable & paginated |
+ 
 <br />
-
+## Project structure
+ 
+```
+growease-csv-importer/
+│
+├── backend/                          Express API
+│   ├── src/
+│   │   ├── routes/
+│   │   │   ├── upload.route.ts        POST /api/csv/preview   (parse only, no AI)
+│   │   │   ├── import.route.ts        POST /api/csv/import    (batch AI + validation)
+│   │   │   └── history.route.ts       GET  /api/history
+│   │   ├── services/
+│   │   │   ├── csv.service.ts         Raw CSV → row objects
+│   │   │   ├── ai.service.ts          Provider-agnostic AI calls, batching, retries
+│   │   │   └── crm.service.ts         Validates AI output into the CRM schema
+│   │   ├── middleware/                 Upload limits, centralized error handling
+│   │   ├── db/prisma.ts                Optional — only initializes if DB is configured
+│   │   └── types/                      Shared TypeScript types & CRM enums
+│   ├── prisma/schema.prisma
+│   ├── tests/
+│   ├── Dockerfile
+│   └── render.yaml
+│
+├── frontend/                          Next.js — one real route per step
+│   └── app/
+│       ├── page.tsx                    "/"            Upload
+│       ├── preview/page.tsx            "/preview"     Preview + Confirm
+│       ├── processing/page.tsx         "/processing"  Triggers the AI call
+│       ├── results/page.tsx            "/results"     Imported / skipped panels
+│       ├── components/                 UploadZone, PreviewTable, ImportedPanel, …
+│       └── lib/                        api.ts · storage.ts · usePagination.ts
+│
+├── docs/screenshots/                  Product tour images
+├── samples/                           Example CSVs for testing
+├── docker-compose.yml
+└── README.md
+```
+ 
+**Why this structure:** routes only handle HTTP (parse request → call service → respond).
+All business logic — CSV parsing, AI calls, validation — lives in `services/`, with zero
+knowledge of Express. That's what makes the extraction logic unit-testable in isolation,
+and swapping the AI provider or database never touches a route file.
+ 
+<br />
 ## Run it locally
-
+ 
 ```bash
 # Backend
 cd backend && cp .env.example .env && npm install && npm run dev   # :4000
-
+ 
 # Frontend
 cd frontend && cp .env.example .env.local && npm install && npm run dev   # :3000
 ```
-
+ 
 Or full stack with Docker: `docker compose up --build`
-
-<br />
-
-## API
-
-| Method | Path | Description |
-|---|---|---|
-| `POST` | `/api/csv/preview` | Parse CSV, no AI |
-| `POST` | `/api/csv/import` | Batch AI extraction → structured CRM records |
-| `GET` | `/health` | Liveness check |
-
+ 
 <br />
 
 ---
