@@ -9,7 +9,7 @@
 <br />
 
 [![Live App](https://img.shields.io/badge/🚀_Live_App-000000?style=for-the-badge)](https://fluxlead-aicrm.netlify.app)
-[![Live App](https://img.shields.io/badge/🚀_Live_App-000000?style=for-the-badge)](#-preview)
+[![APP Preview](https://img.shields.io/badge/🚀_Live_App-000000?style=for-the-badge)](#-preview)
 
 ![Next.js](https://img.shields.io/badge/Next.js_14-black?style=flat-square&logo=next.js)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
