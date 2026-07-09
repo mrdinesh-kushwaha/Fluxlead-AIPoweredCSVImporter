@@ -1,0 +1,49 @@
+# Render Blueprint — deploy with "New +" -> "Blueprint" and point at this repo.
+#
+# IMPORTANT: values marked `sync: false` are NOT stored in this file or in
+# git. Render will prompt you to type them directly into the Dashboard
+# (Environment tab) after the first deploy. This is how secrets are meant
+# to be handled — same principle real companies use (Render/AWS/GCP secret
+# managers): config lives in the platform, never in source code.
+services:
+  - type: web
+    name: growease-csv-importer-api
+    runtime: node
+    plan: free
+    rootDir: backend
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      # --- Non-secret defaults (safe to keep here, editable in Dashboard later) ---
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 4000
+      - key: AI_PROVIDER
+        value: gemini
+      - key: OPENAI_MODEL
+        value: gpt-4o-mini
+      - key: GEMINI_MODEL
+        value: gemini-2.0-flash
+      - key: ANTHROPIC_MODEL
+        value: claude-3-5-haiku-20241022
+      - key: AI_BATCH_SIZE
+        value: 20
+      - key: AI_MAX_RETRIES
+        value: 3
+      - key: MAX_FILE_SIZE_MB
+        value: 5
+
+      # --- Secrets: Render will ask you to enter these in the Dashboard ---
+      # (leave blank if you're not using that particular AI provider)
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: CORS_ORIGIN
+        sync: false
+      - key: DATABASE_URL
+        sync: false

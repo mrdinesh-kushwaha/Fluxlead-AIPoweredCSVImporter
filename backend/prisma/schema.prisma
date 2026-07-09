@@ -1,0 +1,70 @@
+// GrowEasy CSV Importer — Prisma schema
+// Database is optional: the app runs fully stateless if DATABASE_URL is
+// unset. When set (e.g. Neon Postgres), every import run and its resulting
+// leads are persisted for history/audit.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model ImportBatch {
+  id             String   @id @default(cuid())
+  fileName       String
+  fileSizeBytes  Int
+  totalReceived  Int
+  totalImported  Int
+  totalSkipped   Int
+  batchCount     Int
+  durationMs     Int
+  aiProvider     String
+  createdAt      DateTime @default(now())
+
+  leads   Lead[]
+  skipped SkippedRow[]
+
+  @@index([createdAt])
+}
+
+model Lead {
+  id                           String   @id @default(cuid())
+  importBatchId                String
+  importBatch                  ImportBatch @relation(fields: [importBatchId], references: [id], onDelete: Cascade)
+
+  createdAtRaw                 String?
+  name                         String?
+  email                        String?
+  countryCode                  String?
+  mobileWithoutCountryCode     String?
+  company                      String?
+  city                         String?
+  state                        String?
+  country                      String?
+  leadOwner                    String?
+  crmStatus                    String?
+  crmNote                      String?
+  dataSource                   String?
+  possessionTime               String?
+  description                  String?
+
+  insertedAt                   DateTime @default(now())
+
+  @@index([importBatchId])
+  @@index([email])
+}
+
+model SkippedRow {
+  id             String   @id @default(cuid())
+  importBatchId  String
+  importBatch    ImportBatch @relation(fields: [importBatchId], references: [id], onDelete: Cascade)
+
+  rawRowJson     Json
+  reason         String
+  insertedAt     DateTime @default(now())
+
+  @@index([importBatchId])
+}

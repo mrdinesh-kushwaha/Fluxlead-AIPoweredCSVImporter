@@ -1,0 +1,235 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html.light {
+  color-scheme: light;
+}
+
+html,
+body {
+  background-color: #0b0e17;
+  color: #e7eaf2;
+  height: 100%;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.18) transparent;
+}
+html.light * {
+  scrollbar-color: rgba(30, 27, 46, 0.18) transparent;
+}
+
+*::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+*::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+}
+html.light *::-webkit-scrollbar-thumb {
+  background: rgba(30, 27, 46, 0.18);
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.text-gradient {
+  background: linear-gradient(115deg, #6d5ef5 0%, #a855f7 50%, #ec4899 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.shimmer-bg {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.04) 25%,
+    rgba(255, 255, 255, 0.09) 37%,
+    rgba(255, 255, 255, 0.04) 63%
+  );
+  background-size: 400% 100%;
+  animation: shimmer 2.2s linear infinite;
+}
+
+/* Reduced motion respect */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* Visible keyboard focus */
+:focus-visible {
+  outline: 2px solid #a855f7;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ==========================================================================
+   LIGHT THEME
+   A dedicated, hand-tuned token set — not a dark-mode invert. Base surface
+   is a soft violet-tinted white so the brand gradient still feels native to
+   the page instead of pasted on top of a generic grey/white admin panel.
+   ========================================================================== */
+
+html.light body {
+  background-color: #f6f5fc;
+  color: #1c1a2b;
+}
+
+/* Page background washes / ambient glow */
+html.light .bg-ink-900 {
+  background-color: #f6f5fc !important;
+}
+html.light .bg-ink-900\/85 {
+  background-color: rgba(246, 245, 252, 0.9) !important;
+}
+html.light .bg-flow-radial {
+  background-image: radial-gradient(circle at 20% -10%, rgba(109, 94, 245, 0.14), transparent 55%),
+    radial-gradient(circle at 90% 10%, rgba(236, 72, 153, 0.1), transparent 45%);
+}
+html.light .bg-flow-violet\/20 {
+  background-color: rgba(109, 94, 245, 0.1) !important;
+}
+
+/* Glass panels + surfaces */
+html.light .glass-panel {
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(28, 26, 43, 0.08);
+  box-shadow: 0 8px 28px rgba(76, 63, 145, 0.08);
+}
+html.light .ink-surface,
+html.light .bg-ink-800,
+html.light .bg-ink-800\/60,
+html.light .bg-ink-800\/95 {
+  background-color: #ffffff !important;
+}
+
+/* Table headers get a distinct violet-tinted highlight, not plain white,
+   so the header row is unmistakably separated from the data rows */
+html.light thead {
+  background-color: rgba(109, 94, 245, 0.055) !important;
+}
+html.light thead th {
+  border-bottom: 1px solid rgba(109, 94, 245, 0.15);
+}
+
+/* Row hover — the exact class names used in the table components */
+html.light .hover\:bg-white\/\[0\.035\]:hover {
+  background-color: rgba(109, 94, 245, 0.05) !important;
+}
+
+/* Borders */
+html.light .border-white\/10,
+html.light .border-white\/5,
+html.light .border-white\/20,
+html.light .border-white\/15 {
+  border-color: rgba(28, 26, 43, 0.1) !important;
+}
+
+/* Hover / row backgrounds */
+html.light .hover\:bg-white\/5:hover,
+html.light .hover\:bg-white\/10:hover,
+html.light .bg-white\/5,
+html.light .bg-white\/\[0\.03\]:hover,
+html.light .hover\:bg-white\/\[0\.03\]:hover {
+  background-color: rgba(109, 94, 245, 0.06) !important;
+}
+
+/* Text colors — tuned for AA contrast on the light surface */
+html.light .text-mist-100 {
+  color: #1c1a2b !important;
+}
+html.light .text-mist-100\/90 {
+  color: rgba(28, 26, 43, 0.88) !important;
+}
+html.light .text-mist-300 {
+  color: #4a4661 !important;
+}
+html.light .text-mist-400 {
+  color: #6f6b87 !important;
+}
+html.light .text-mist-400\/50 {
+  color: rgba(111, 107, 135, 0.55) !important;
+}
+
+/* Shimmer bar reads better with a brand-tinted sweep on white */
+html.light .shimmer-bg {
+  background: linear-gradient(
+    90deg,
+    rgba(109, 94, 245, 0.12) 25%,
+    rgba(168, 85, 247, 0.28) 37%,
+    rgba(109, 94, 245, 0.12) 63%
+  );
+  background-size: 400% 100%;
+}
+
+/* Status tag backgrounds keep their hue but need a touch more saturation
+   to stay legible on a white row */
+html.light .bg-signal-success\/10 {
+  background-color: rgba(16, 185, 129, 0.12) !important;
+}
+html.light .bg-signal-warning\/10 {
+  background-color: rgba(217, 119, 6, 0.12) !important;
+}
+html.light .bg-signal-danger\/10 {
+  background-color: rgba(220, 38, 38, 0.1) !important;
+}
+html.light .text-signal-success {
+  color: #0f9d70 !important;
+}
+html.light .text-signal-warning {
+  color: #b45309 !important;
+}
+html.light .text-signal-danger {
+  color: #dc2626 !important;
+}
+
+/* Sticky table headers need a solid, opaque backdrop in light mode — tinted
+   to match the highlighted header treatment above */
+html.light thead.sticky {
+  background-color: rgba(243, 241, 253, 0.97) !important;
+}
+
+/* Zebra striping — subtle, brand-tinted in light mode, neutral in dark */
+.table-row-zebra:nth-child(even) {
+  background: rgba(255, 255, 255, 0.018);
+}
+html.light .table-row-zebra:nth-child(even) {
+  background: rgba(109, 94, 245, 0.035);
+}
+
+/* `divide-y divide-white/10` compiles to a `> :not([hidden]) ~ :not([hidden])`
+   selector, not `.border-white/10` — the border overrides above never reach
+   it, so mobile card-list separators (preview rows, imported/skipped leads)
+   stayed invisible (near-white on white) in light mode. */
+html.light .divide-white\/10 > :not([hidden]) ~ :not([hidden]) {
+  border-color: rgba(28, 26, 43, 0.14) !important;
+}
+
+/* Premium brand-gradient treatment for each row's primary text — light mode
+   only, so the dark theme's flat text-mist-100 stays untouched. */
+html.light .text-premium {
+  background: linear-gradient(115deg, #6d5ef5 0%, #a855f7 55%, #ec4899 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+}

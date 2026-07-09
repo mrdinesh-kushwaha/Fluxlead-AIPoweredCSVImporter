@@ -1,0 +1,39 @@
+version: "3.9"
+
+# Local development stack. In production, backend -> Render, frontend -> Netlify,
+# and Postgres -> Neon (see README for those steps). This compose file is only
+# for running everything together on your machine.
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: growease
+      POSTGRES_PASSWORD: growease
+      POSTGRES_DB: growease_csv_importer
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  backend:
+    build: ./backend
+    restart: unless-stopped
+    depends_on:
+      - postgres
+    environment:
+      PORT: 4000
+      NODE_ENV: development
+      CORS_ORIGIN: http://localhost:3000
+      DATABASE_URL: postgresql://growease:growease@postgres:5432/growease_csv_importer
+      AI_PROVIDER: openai
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+      OPENAI_MODEL: gpt-4o-mini
+      AI_BATCH_SIZE: 20
+      AI_MAX_RETRIES: 3
+    ports:
+      - "4000:4000"
+
+volumes:
+  db_data:
