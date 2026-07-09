@@ -35,6 +35,43 @@ the rest" needs to actually work.
 
 <br />
 
+## 🌍 Real-life use case
+
+This isn't a made-up problem — it's the exact pattern behind bulk data onboarding in
+almost every serious SaaS product:
+
+| | Industry | The mess Fluxlead-style AI mapping solves |
+|---|---|---|
+| 🏢 | **CRMs** (Salesforce, HubSpot) | Customers import existing lead/contact lists — every export names columns differently |
+| 👔 | **Recruiting platforms** | Candidate data pulled from LinkedIn, Naukri, Indeed — none of them agree on a schema |
+| 🛒 | **E-commerce** | Merging product catalogs from 10 different suppliers, each with their own spreadsheet format |
+| 🧑‍💼 | **HR / Payroll** | Migrating employee records between systems during a company merger |
+| 🏦 | **Fintech** | Reconciling bank statements that arrive in different formats from different banks |
+| 🏘️ | **Real estate** (this project's actual context) | Leads from Facebook Ads, Google Ads, and manually-typed spreadsheets — all landing in one CRM |
+
+**The common thread:** any product that says *"upload your data, we'll take it from
+here"* — without making the user manually map every single column — is solving this
+exact problem underneath.
+
+### 💡 Why this matters practically
+
+Without AI-driven mapping, a developer has to write a new hardcoded rule
+(`row["Email"]`, `row["email_address"]`, `row["Contact Email"]`...) **every single time**
+a new data source shows up. That's not scalable — it's a maintenance burden that grows
+forever. Fluxlead's AI reasoning layer removes that burden entirely: it reads column
+names *and* sample values together, the way a human onboarding assistant would, and maps
+them correctly — even for a source it has never seen before.
+
+### 🎯 Real scenario this project simulates
+
+> A real-estate company runs ads on Facebook and Google, and also has agents manually
+> logging walk-in leads into Excel. Every Monday, someone on the sales-ops team has to
+> merge three CSVs with three different column layouts into GrowEasy CRM — by hand.
+>
+> **With Fluxlead:** they upload all three files (one at a time), the AI maps each one
+> into the same clean schema, and the sales team gets a single unified lead list —
+> in seconds, not hours.
+
 ## 📱 Preview 
 
 <table>
