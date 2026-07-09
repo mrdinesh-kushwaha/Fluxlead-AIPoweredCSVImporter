@@ -46,8 +46,8 @@ the rest" needs to actually work.
 <td width="33%"><img src="docs/screenshots/AI Mapping.png" alt="AI processing" /><p align="center"><sub><b>AI mapping</b> — batched, retried</sub></p></td>
 </tr>
 <tr>
-<td width="33%"><img src="docs/screenshots/result 1.png" alt="Results" /><p align="center"><sub><b>Results</b> — imported vs skipped</sub></p></td>
-<td width="33%"><img src="docs/screenshots/result2.png" alt="Data" /><p align="center"><sub><b>Imported Data</b> — formatted and validated</sub></p></td>
+<td width="33%"><img src="docs/screenshots/results.png" alt="Results" /><p align="center"><sub><b>Results</b> — imported vs skipped</sub></p></td>
+<td width="33%"><img src="docs/screenshots/import and skipped data.png" alt="Data" /><p align="center"><sub><b>Imported and skippedData</b> — formatted and validated</sub></p></td>
 <td width="33%"><img src="docs/screenshots/analytics.png" alt="Analytics" /><p align="center"><sub><b>Analytics</b> — insights and reporting</sub></p></td>
 </tr>
 </table>
