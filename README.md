@@ -1,7 +1,5 @@
 <div align="center">
 
-<img src="https://img.shields.io/badge/Fluxlead%20AICRM-1D9E75?style=for-the-badge&logoColor=white" />
-
 # ✨ Fluxlead
 
 ### AI-Powered CSV → CRM Lead Importer
