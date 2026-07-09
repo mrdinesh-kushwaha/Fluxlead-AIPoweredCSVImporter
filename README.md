@@ -21,7 +21,7 @@
 
 <br />
 
-## The problem
+## 🚀 Why this project created
 
 Every lead source names its columns differently — `Full name` vs `Customer Name` vs
 `Lead`, `Phone Number` vs `Mobile` vs `Contact`. Hardcoded importers break the moment a
@@ -35,7 +35,7 @@ the rest" needs to actually work.
 
 <br />
 
-## Preview
+## 📱 Preview 
 
 <table>
 <tr>
@@ -54,7 +54,7 @@ the rest" needs to actually work.
 
 <br />
 
-## Why it's production-grade, not a demo
+## ✅ Why it's production-grade, not a demo 
 
 - **Fault isolation** — one bad batch of 20 rows never fails the other 480
 - **Fail-fast on systemic errors** — a dead API key stops after batch 1, not batch 25
@@ -64,7 +64,7 @@ the rest" needs to actually work.
 
 <br />
 
-## Tech Stack Used
+## 🧑‍💻 Tech Stack Used 
  
 | | |
 |---|---|
@@ -76,7 +76,7 @@ the rest" needs to actually work.
  
 <br />
 
-## How it works — 4 steps
+## 🌐 How it works — 4 steps 
  
 ```
 ┌─────────────┐     ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
@@ -105,7 +105,8 @@ the rest" needs to actually work.
 | `/results` | Results | Imported / skipped panels, searchable & paginated |
  
 <br />
-## Project structure
+
+## 🔗 Project structure 
  
 ```
 growease-csv-importer/
@@ -149,7 +150,8 @@ knowledge of Express. That's what makes the extraction logic unit-testable in is
 and swapping the AI provider or database never touches a route file.
  
 <br />
-## Run it locally
+
+## 📱 Run it locally
  
 ```bash
 # Backend
