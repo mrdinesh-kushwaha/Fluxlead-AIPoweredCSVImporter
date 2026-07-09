@@ -9,6 +9,7 @@
 <br />
 
 [![Live App](https://img.shields.io/badge/🚀_Live_App-000000?style=for-the-badge)](https://fluxlead-aicrm.netlify.app)
+[![Live App](https://img.shields.io/badge/🚀_Live_App-000000?style=for-the-badge)](#-preview)
 
 ![Next.js](https://img.shields.io/badge/Next.js_14-black?style=flat-square&logo=next.js)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
@@ -21,19 +22,12 @@
 
 <br />
 
-## 🚀 Why this project created
+## 🚀 What is this project?
 
 Every lead source names its columns differently — `Full name` vs `Customer Name` vs
 `Lead`, `Phone Number` vs `Mobile` vs `Contact`. Hardcoded importers break the moment a
 new source shows up. **Fluxlead reads the data the way a human would** and maps it into
 a fixed CRM schema — no manual column-matching, no dropdowns, just upload and confirm.
-
-**Where this pattern matters:** CRM lead imports, recruiting platforms merging candidate
-data, e-commerce catalogs from different suppliers, HR systems migrating records, fintech
-reconciling statements from different banks — anywhere "upload your data, we'll handle
-the rest" needs to actually work.
-
-<br />
 
 ## 🌍 Real-life use case
 
@@ -52,15 +46,6 @@ almost every serious SaaS product:
 **The common thread:** any product that says *"upload your data, we'll take it from
 here"* — without making the user manually map every single column — is solving this
 exact problem underneath.
-
-### 💡 Why this matters practically
-
-Without AI-driven mapping, a developer has to write a new hardcoded rule
-(`row["Email"]`, `row["email_address"]`, `row["Contact Email"]`...) **every single time**
-a new data source shows up. That's not scalable — it's a maintenance burden that grows
-forever. Fluxlead's AI reasoning layer removes that burden entirely: it reads column
-names *and* sample values together, the way a human onboarding assistant would, and maps
-them correctly — even for a source it has never seen before.
 
 ### 🎯 Real scenario this project simulates
 
