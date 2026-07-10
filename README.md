@@ -179,13 +179,15 @@ and swapping the AI provider or database never touches a route file.
 
 ## 🛠️ Setup
 
-### Prerequisites
+```
 
 - **Node.js** v18 or higher
 - **npm** (comes with Node.js)
 - An API key from **one** AI provider: [OpenAI](https://platform.openai.com/api-keys), [Google AI Studio](https://aistudio.google.com/apikey) (Gemini), [Anthropic](https://console.anthropic.com/settings/keys) (Claude), or [Groq](https://console.groq.com/keys)
 - *(Optional)* A [Neon](https://neon.tech) PostgreSQL database, if you want import history persisted
 - *(Optional)* Docker, if you'd rather run everything in containers
+
+```
 
 <br />
 
