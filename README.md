@@ -10,7 +10,10 @@
 
 [![Live App](https://img.shields.io/badge/🚀_Live_App-000000?style=for-the-badge)](https://fluxlead-aicrm.netlify.app)
 [![APP Preview](https://img.shields.io/badge/📱_App_Preview-000000?style=for-the-badge)](#-preview)
-[![SetUp Instructions](https://img.shields.io/badge/⚙️_SetUp_Instructions-000000?style=for-the-badge)](#-setup-instructions)
+[![SetUp Instructions](https://img.shields.io/badge/⚙️_SetUp_Instructions-000000?style=for-the-badge)](#-prerequisites)
+[![Tech Stack](https://img.shields.io/badge/🛠️_Tech_Stack-000000?style=for-the-badge)](#-tech-stack-used)
+[![Project Structure](https://img.shields.io/badge/📂_Project_Structure-000000?style=for-the-badge)](#-project-structure)
+[![Author](https://img.shields.io/badge/👨‍💻_Author-000000?style=for-the-badge)](#-author)
 
 ![Next.js](https://img.shields.io/badge/Next.js_14-black?style=flat-square&logo=next.js)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
