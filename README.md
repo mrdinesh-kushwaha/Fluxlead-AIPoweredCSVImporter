@@ -10,7 +10,7 @@
 
 [![Live App](https://img.shields.io/badge/🚀_Live_App-000000?style=for-the-badge)](https://fluxlead-aicrm.netlify.app)
 [![APP Preview](https://img.shields.io/badge/📱_App_Preview-000000?style=for-the-badge)](#-preview)
-[![SetUp Instructions](https://img.shields.io/badge/⚙️_SetUp_Instructions-000000?style=for-the-badge)](#-setup-instructions)
+[![SetUp Instructions](https://img.shields.io/badge/⚙️_SetUp_Instructions-000000?style=for-the-badge)](#-clone-the-repository)
 
 [![Project Structure](https://img.shields.io/badge/📂_Project_Structure-000000?style=for-the-badge)](#-project-structure)
 
