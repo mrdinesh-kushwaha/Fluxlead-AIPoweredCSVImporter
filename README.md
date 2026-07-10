@@ -10,12 +10,13 @@
 
 [![Live App](https://img.shields.io/badge/🚀_Live_App-000000?style=for-the-badge)](https://fluxlead-aicrm.netlify.app)
 [![APP Preview](https://img.shields.io/badge/📱_App_Preview-000000?style=for-the-badge)](#-preview)
+[![SetUp Instructions](https://img.shields.io/badge/⚙️_SetUp_Instructions-000000?style=for-the-badge)](#-setup-instructions)
 
 ![Next.js](https://img.shields.io/badge/Next.js_14-black?style=flat-square&logo=next.js)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
 ![Express](https://img.shields.io/badge/Express-000000?style=flat-square&logo=express)
 ![Postgres](https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white)
-![AI](https://img.shields.io/badge/Gemini_·_OpenAI_·_Claude-8E75B2?style=flat-square)
+![AI](https://img.shields.io/badge/Gemini_·_OpenAI_·_Claude_._Groq-8E75B2?style=flat-square)
 ![Tailwind](https://img.shields.io/badge/Tailwind-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)
 
 </div>
@@ -173,19 +174,142 @@ and swapping the AI provider or database never touches a route file.
  
 <br />
 
-## 📱 Run it locally
- 
-```bash
-# Backend
-cd backend && cp .env.example .env && npm install && npm run dev   # :4000
- 
-# Frontend
-cd frontend && cp .env.example .env.local && npm install && npm run dev   # :3000
-```
- 
-Or full stack with Docker: `docker compose up --build`
- 
+## 🛠️ Setup Instructions
+
+### Prerequisites
+
+- **Node.js** v18 or higher
+- **npm** (comes with Node.js)
+- An API key from **one** AI provider: [OpenAI](https://platform.openai.com/api-keys), [Google AI Studio](https://aistudio.google.com/apikey) (Gemini), [Anthropic](https://console.anthropic.com/settings/keys) (Claude), or [Groq](https://console.groq.com/keys)
+- *(Optional)* A [Neon](https://neon.tech) PostgreSQL database, if you want import history persisted
+- *(Optional)* Docker, if you'd rather run everything in containers
+
 <br />
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/your-username/fluxlead-csv-importer.git
+cd fluxlead-csv-importer
+```
+
+<br />
+
+### 2. Backend setup
+
+```bash
+cd backend
+cp .env.example .env
+npm install
+```
+
+Open `backend/.env` and fill in **at minimum** your AI provider key:
+
+```env
+AI_PROVIDER=gemini                # or: openai | anthropic | groq
+GEMINI_API_KEY=your_key_here
+GEMINI_MODEL=gemini-2.0-flash
+
+# Optional — leave blank to run stateless
+DATABASE_URL=
+
+PORT=4000
+CORS_ORIGIN=http://localhost:3000
+```
+
+Start the backend:
+
+```bash
+npm run dev
+```
+
+Verify it's running:
+
+```bash
+curl http://localhost:4000/health
+```
+
+You should see `{"status":"ok", ...}`.
+
+<br />
+
+### 3. Frontend setup
+
+Open a **new terminal**:
+
+```bash
+cd frontend
+cp .env.example .env.local
+npm install
+```
+
+Open `frontend/.env.local`:
+
+```env
+NEXT_PUBLIC_API_BASE_URL=http://localhost:4000
+```
+
+Start the frontend:
+
+```bash
+npm run dev
+```
+
+Open **http://localhost:3000** in your browser — the app should load.
+
+<br />
+
+### 4. (Optional) Database setup — Neon PostgreSQL
+
+The app runs fully stateless without a database. To enable import history:
+
+1. Create a free project at [neon.tech](https://neon.tech)
+2. Copy the **pooled connection string**
+3. Paste it into `backend/.env` as `DATABASE_URL`
+4. Run the migration:
+
+```bash
+cd backend
+npx prisma migrate deploy
+```
+
+<br />
+
+### 5. (Optional) Run everything with Docker instead
+
+```bash
+GEMINI_API_KEY=your_key_here docker compose up --build
+```
+
+This spins up the backend + a local Postgres instance together.
+
+<br />
+
+### 6. Run tests
+
+```bash
+cd backend
+npm test
+```
+
+<br />
+
+### 7. Try it out
+
+Sample CSVs are in the [`samples/`](samples) folder — upload any of them to test the
+full flow (Upload → Preview → Confirm → AI Extraction → Results) without needing your
+own data.
+
+<br />
+
+### Troubleshooting
+
+| Problem | Fix |
+|---|---|
+| `AI extraction failed... API key not valid` | Double-check the key in `backend/.env` — no extra spaces, correct provider selected |
+| CORS error in browser console | `CORS_ORIGIN` in `backend/.env` must exactly match your frontend URL (no trailing slash) |
+| `Cannot find module` errors | Run `npm install` again in the folder showing the error |
+| Backend won't start | Confirm `PORT=4000` isn't already in use by another process |
 
 ---
 
