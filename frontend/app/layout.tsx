@@ -24,7 +24,7 @@ const mono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "Fluxlead — AI CRM Importer",
   description:
-    "Upload any CSV, in any layout, and Fluxlead's AI maps it straight into GrowEasy CRM format.",
+    "Upload any CSV, in any layout, and Fluxlead's AI maps it straight into Easy CRM format.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

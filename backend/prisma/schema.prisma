@@ -1,4 +1,4 @@
-// GrowEasy CSV Importer — Prisma schema
+// Easy CSV Importer — Prisma schema
 // Database is optional: the app runs fully stateless if DATABASE_URL is
 // unset. When set (e.g. Neon Postgres), every import run and its resulting
 // leads are persisted for history/audit.

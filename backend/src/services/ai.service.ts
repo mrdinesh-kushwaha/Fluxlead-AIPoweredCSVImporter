@@ -12,12 +12,12 @@ export interface BatchExtractionOutcome {
   error?: string;
 }
 
-const SYSTEM_PROMPT = `You are a precise data-mapping engine for GrowEasy CRM.
+const SYSTEM_PROMPT = `You are a precise data-mapping engine for Easy CRM.
 You receive an array of raw CSV row objects with arbitrary, inconsistent column names
 (they may come from Facebook Lead Ads, Google Ads, Excel exports, real-estate CRMs,
 sales reports, marketing agency sheets, or manual spreadsheets).
 
-Your job: map each row's available fields into the GrowEasy CRM schema below.
+Your job: map each row's available fields into the Easy CRM schema below.
 Return ONLY a JSON array, same length and same order as the input array, one object
 per input row. Do not merge, drop, add, or reorder rows. If a row is entirely unusable,
 still return an object for it with whatever fields you found (possibly all null) —
@@ -63,7 +63,7 @@ Rules:
 4. Respond with raw JSON only — no markdown fences, no commentary, no trailing text.`;
 
 function buildUserPrompt(rows: RawCsvRow[]): string {
-  return `Map the following ${rows.length} CSV rows to the GrowEasy CRM schema.
+  return `Map the following ${rows.length} CSV rows to the Easy CRM schema.
 Input rows (JSON array, 0-indexed, same order must be preserved in your output):
 ${JSON.stringify(rows, null, 0)}`;
 }

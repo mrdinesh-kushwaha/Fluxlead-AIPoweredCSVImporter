@@ -52,7 +52,7 @@ app.use(notFoundHandler);
 app.use(errorHandler);
 
 app.listen(PORT, () => {
-  logger.info(`GrowEasy CSV Importer API listening on port ${PORT}`, {
+  logger.info(`Easy CSV Importer API listening on port ${PORT}`, {
     dbEnabled: isDbEnabled(),
     aiProvider: process.env.AI_PROVIDER || "openai",
   });

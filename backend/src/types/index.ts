@@ -19,7 +19,7 @@ export type DataSource = (typeof DATA_SOURCE_VALUES)[number];
 /** Raw CSV row before AI processing — arbitrary, unknown shape */
 export type RawCsvRow = Record<string, string>;
 
-/** GrowEasy CRM canonical lead record */
+/** Easy CRM canonical lead record */
 export interface CrmRecord {
   created_at: string | null;
   name: string | null;

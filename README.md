@@ -55,7 +55,7 @@ exact problem underneath.
 
 > A real-estate company runs ads on Facebook and Google, and also has agents manually
 > logging walk-in leads into Excel. Every Monday, someone on the sales-ops team has to
-> merge three CSVs with three different column layouts into GrowEasy CRM — by hand.
+> merge three CSVs with three different column layouts into Easy CRM — by hand.
 >
 > **With Fluxlead:** they upload all three files (one at a time), the AI maps each one
 > into the same clean schema, and the sales team gets a single unified lead list —

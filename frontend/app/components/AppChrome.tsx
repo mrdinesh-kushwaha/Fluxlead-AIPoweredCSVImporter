@@ -65,15 +65,6 @@ export function AppChrome({ children }: { children: React.ReactNode }) {
           </div>
         </ScrollContainerContext.Provider>
 
-        {/* The byline footer is a landing-page touch — workspace screens
-            (preview/processing/results) skip it to reclaim vertical space,
-            matching how real SaaS apps drop marketing chrome once you're
-            inside the product flow. */}
-        {/* {isUpload && (
-          <footer className="shrink-0 pt-1 text-center text-[11px] text-mist-400">
-            Built for the GrowEasy Software Developer assignment · AI-powered CSV → CRM import
-          </footer>
-        )} */}
       </div>
     </main>
   );

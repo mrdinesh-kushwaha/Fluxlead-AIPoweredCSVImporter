@@ -81,7 +81,7 @@ export default function ResultsPage() {
   } else {
     // Case 1 — everything imported
     headingTitle = "Import completed successfully!";
-    headingSubtitle = `All ${result.totalReceived} rows were imported into GrowEasy CRM.`;
+    headingSubtitle = `All ${result.totalReceived} rows were imported into Easy CRM.`;
     headingTone = "success";
     headingIcon = CheckCircle2;
   }
