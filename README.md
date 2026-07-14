@@ -1,6 +1,6 @@
 <div align="center">
 
-# ✨ Fluxlead
+# ✨ IntelliImport
 
 ### AI-Powered CSV → CRM Lead Importer
 
@@ -8,9 +8,9 @@
 
 <br />
 
-[![Live App](https://img.shields.io/badge/🚀_Live_App-000000?style=for-the-badge)](https://fluxlead-aicrm.netlify.app)
+[![Live App](https://img.shields.io/badge/🚀_Live_App-000000?style=for-the-badge)](https://intelliImport-aicrm.netlify.app)
 [![APP Preview](https://img.shields.io/badge/📱_App_Preview-000000?style=for-the-badge)](#-preview)
-[![SetUp Instructions](https://img.shields.io/badge/⚙️_SetUp_Instructions-000000?style=for-the-badge)](https://github.com/mrdinesh-kushwaha/Fluxlead-AIPoweredCSVImporter#%EF%B8%8F-setup)
+[![SetUp Instructions](https://img.shields.io/badge/⚙️_SetUp_Instructions-000000?style=for-the-badge)](https://github.com/mrdinesh-kushwaha/IntelliImport-AIPoweredCSVImporter#%EF%B8%8F-setup)
 
 [![Project Structure](https://img.shields.io/badge/📂_Project_Structure-000000?style=for-the-badge)](#-project-structure)
 
@@ -30,7 +30,7 @@
 
 Every lead source names its columns differently — `Full name` vs `Customer Name` vs
 `Lead`, `Phone Number` vs `Mobile` vs `Contact`. Hardcoded importers break the moment a
-new source shows up. **Fluxlead reads the data the way a human would** and maps it into
+new source shows up. **IntelliImport reads the data the way a human would** and maps it into
 a fixed CRM schema — no manual column-matching, no dropdowns, just upload and confirm.
 
 ## 🌍 Real-life use case
@@ -38,7 +38,7 @@ a fixed CRM schema — no manual column-matching, no dropdowns, just upload and 
 This isn't a made-up problem — it's the exact pattern behind bulk data onboarding in
 almost every serious SaaS product:
 
-| | Industry | The mess Fluxlead-style AI mapping solves |
+| | Industry | The mess IntelliImport-style AI mapping solves |
 |---|---|---|
 | 🏢 | **CRMs** (Salesforce, HubSpot) | Customers import existing lead/contact lists — every export names columns differently |
 | 👔 | **Recruiting platforms** | Candidate data pulled from LinkedIn, Naukri, Indeed — none of them agree on a schema |
@@ -57,7 +57,7 @@ exact problem underneath.
 > logging walk-in leads into Excel. Every Monday, someone on the sales-ops team has to
 > merge three CSVs with three different column layouts into Easy CRM — by hand.
 >
-> **With Fluxlead:** they upload all three files (one at a time), the AI maps each one
+> **With IntelliImport:** they upload all three files (one at a time), the AI maps each one
 > into the same clean schema, and the sales team gets a single unified lead list —
 > in seconds, not hours.
 
@@ -194,8 +194,8 @@ and swapping the AI provider or database never touches a route file.
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/fluxlead-csv-importer.git
-cd fluxlead-csv-importer
+git clone https://github.com/your-username/intelliImport-csv-importer.git
+cd intelliImport-csv-importer
 ```
 
 <br />
@@ -327,6 +327,6 @@ Developed with ❤️ by **Dinesh Kushwaha**
 ---
 <div align="center">
 
-[![Live App](https://img.shields.io/badge/View_Live_App_→-000000?style=for-the-badge)](https://fluxlead-aicrm.netlify.app)
+[![Live App](https://img.shields.io/badge/View_Live_App_→-000000?style=for-the-badge)](https://intelliImport-aicrm.netlify.app)
 
 </div>

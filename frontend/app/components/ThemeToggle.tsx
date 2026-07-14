@@ -7,7 +7,7 @@ export function ThemeToggle() {
   const [isLight, setIsLight] = useState(false);
 
   useEffect(() => {
-    const stored = window.localStorage.getItem("fluxlead-theme");
+    const stored = window.localStorage.getItem("intelliImport-theme");
     const prefersLight = stored === "light";
     setIsLight(prefersLight);
     document.documentElement.classList.toggle("light", prefersLight);
@@ -17,7 +17,7 @@ export function ThemeToggle() {
     const next = !isLight;
     setIsLight(next);
     document.documentElement.classList.toggle("light", next);
-    window.localStorage.setItem("fluxlead-theme", next ? "light" : "dark");
+    window.localStorage.setItem("intelliImport-theme", next ? "light" : "dark");
   }
 
   return (

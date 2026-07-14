@@ -47,7 +47,7 @@ export function AppChrome({ children }: { children: React.ReactNode }) {
             </div>
             <div>
               <p className="font-display text-sm font-semibold leading-none text-mist-100">
-                Fluxlead
+                IntelliImport
               </p>
               <p className="text-[10px] leading-none text-mist-400">AI CRM Importer</p>
             </div>

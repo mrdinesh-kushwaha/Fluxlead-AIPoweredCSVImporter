@@ -49,7 +49,7 @@ export default function UploadPage() {
           className="mx-auto mt-1.5 max-w-xl text-xs text-mist-400 sm:text-sm"
         >
           Drop a Facebook Ads export, a Google Ads export, or a spreadsheet someone built by
-          hand — Fluxlead's AI reads the columns and maps them into Easy CRM format.
+          hand — IntelliImport's AI reads the columns and maps them into Easy CRM format.
         </motion.p>
       </section>
 

@@ -1,9 +1,9 @@
 import { ParsedImportResult, UploadPreviewResponse } from "./types";
 
 const KEYS = {
-  preview: "fluxlead:preview",
-  results: "fluxlead:results",
-  importError: "fluxlead:importError",
+  preview: "intelliImport:preview",
+  results: "intelliImport:results",
+  importError: "intelliImport:importError",
 } as const;
 
 function isBrowser() {
